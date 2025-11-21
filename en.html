@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>認証</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #ffffff;
+    }
+    .container {
+      text-align: center;
+      width: 90%;
+      max-width: 320px;
+    }
+    h3 {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 12px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      outline: none;
+    }
+    input:focus {
+      border-color: #333;
+    }
+    button {
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    button:active {
+      opacity: 0.7;
+    }
+    .error {
+      color: #e02424;
+      margin-top: 15px;
+      font-size: 13px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h3>Enter Password</h3>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkPassword()">ENTER</button>
+    <p id="errorMessage" class="error">The password is incorrect.</p>
+  </div>
+
+  <script>
+    // ▼▼▼ 設定エリア ▼▼▼
+    const CORRECT_PASSWORD = 'honikaze';
+    const REDIRECT_URL = 'https://honikaze.com/en/works-A9fK2xPq7R';
+    // ▲▲▲ 設定エリア ▲▲▲
+
+    // エンターキーの検知設定
+    document.getElementById('password').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+
+    function checkPassword() {
+      const inputPass = document.getElementById('password').value;
+      const errorMsg = document.getElementById('errorMessage');
+
+      if (inputPass === CORRECT_PASSWORD) {
+        errorMsg.style.display = 'none';
+        // パスワード正解時、STUDIOの画面全体を遷移
+        window.top.location.href = REDIRECT_URL; 
+      } else {
+        errorMsg.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
