@@ -12,7 +12,7 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background-color: #ffffff; /* 背景色 */
+      background-color: #ffffff;
     }
     .container {
       text-align: center;
@@ -70,12 +70,17 @@
   </div>
 
   <script>
-    // ▼▼▼ ここだけ変更してください ▼▼▼
-    
-    const CORRECT_PASSWORD = 'honikaze';   // パスワード
-    const REDIRECT_URL = 'https://honikaze.com/works-A9fK2xPq7R'; // 遷移先のURL
-    
-    // ▲▲▲ ここだけ変更してください ▲▲▲
+    // ▼▼▼ 設定エリア ▼▼▼
+    const CORRECT_PASSWORD = 'honikaze';
+    const REDIRECT_URL = 'https://honikaze.com/works-A9fK2xPq7R';
+    // ▲▲▲ 設定エリア ▲▲▲
+
+    // エンターキーの検知設定
+    document.getElementById('password').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
 
     function checkPassword() {
       const inputPass = document.getElementById('password').value;
@@ -83,7 +88,7 @@
 
       if (inputPass === CORRECT_PASSWORD) {
         errorMsg.style.display = 'none';
-        // STUDIOのページ全体を遷移させる魔法の記述
+        // パスワード正解時、STUDIOの画面全体を遷移
         window.top.location.href = REDIRECT_URL; 
       } else {
         errorMsg.style.display = 'block';
