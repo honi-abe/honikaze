@@ -52,11 +52,28 @@
     button:active {
       opacity: 0.7;
     }
+
+    /* エラーメッセージの調整 */
     .error {
       color: #e02424;
       margin-top: 15px;
+      margin-bottom: 5px; /* 下との間隔を調整 */
       font-size: 13px;
       display: none;
+      font-weight: bold;
+    }
+
+    /* お問い合わせリンクのスタイル */
+    .contact-link {
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 12px;
+      color: #888;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .contact-link:hover {
+      color: #333;
     }
   </style>
 </head>
@@ -66,17 +83,18 @@
     <h3>パスワードを入力してください</h3>
     <input type="password" id="password" placeholder="Password">
     <button onclick="checkPassword()">ENTER</button>
+    
     <p id="errorMessage" class="error">パスワードが違います</p>
-    <a href="https://honikaze.com/#contact">パスワードのお問い合わせはこちら</a>
+    
+    <div>
+      <a href="https://honikaze.com/#contact" target="_top" class="contact-link">パスワードのお問い合わせはこちら</a>
+    </div>
   </div>
 
   <script>
-    // ▼▼▼ 設定エリア ▼▼▼
     const CORRECT_PASSWORD = 'honikaze';
     const REDIRECT_URL = 'https://honikaze.com/works-A9fK2xPq7R';
-    // ▲▲▲ 設定エリア ▲▲▲
 
-    // エンターキーの検知設定
     document.getElementById('password').addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         checkPassword();
@@ -89,7 +107,6 @@
 
       if (inputPass === CORRECT_PASSWORD) {
         errorMsg.style.display = 'none';
-        // パスワード正解時、STUDIOの画面全体を遷移
         window.top.location.href = REDIRECT_URL; 
       } else {
         errorMsg.style.display = 'block';
