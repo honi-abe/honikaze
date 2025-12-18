@@ -52,11 +52,27 @@
     button:active {
       opacity: 0.7;
     }
+    /* エラーメッセージの調整 */
     .error {
       color: #e02424;
       margin-top: 15px;
+      margin-bottom: 5px; /* 下との間隔を調整 */
       font-size: 13px;
       display: none;
+      font-weight: bold;
+    }
+
+    /* お問い合わせリンクのスタイル */
+    .contact-link {
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 12px;
+      color: #888;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .contact-link:hover {
+      color: #333;
     }
   </style>
 </head>
@@ -67,6 +83,9 @@
     <input type="password" id="password" placeholder="Password">
     <button onclick="checkPassword()">ENTER</button>
     <p id="errorMessage" class="error">The password is incorrect.</p>
+    <div>
+      <a href="https://honikaze.com/#contact" target="_top" class="contact-link">For password inquiries, please contact us here.</a>
+    </div>
   </div>
 
   <script>
